@@ -1,9 +1,9 @@
-import Axis_Primitives
+import Axis
 import CSS_HTML_Rendering
 public import CSS_Standard
-import Geometry_Primitives
+import Geometry
 public import HTML_Rendering
-public import Layout_Primitives
+public import Layout
 import WHATWG_HTML_Grouping
 
 public typealias LayoutRaw = Layout

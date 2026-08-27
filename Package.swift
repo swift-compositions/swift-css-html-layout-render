@@ -13,7 +13,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var layout: Self {
-        .product(name: "Layout Primitives", package: "swift-layout-primitives")
+        .product(name: "Layout", package: "swift-layout")
     }
     static var cssHTMLRendering: Self {
         .product(name: "CSS HTML Rendering", package: "swift-css-html-render")
@@ -28,24 +28,24 @@ extension Target.Dependency {
         .product(name: "WHATWG HTML Grouping", package: "swift-whatwg-html")
     }
     static var sharedPrimitive: Self {
-        .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives")
+        .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared")
     }
     static var hashIndexedPrimitive: Self {
-        .product(name: "Hash Indexed Primitive", package: "swift-hash-table-primitives")
+        .product(name: "Hash Indexed Primitive", package: "swift-hash-table")
     }
-    static var hashPrimitives: Self {
-        .product(name: "Hash Primitives", package: "swift-hash-primitives")
+    static var hash: Self {
+        .product(name: "Hash", package: "swift-hash")
     }
-    static var columnPrimitives: Self {
-        .product(name: "Column Primitives", package: "swift-column-primitives")
+    static var column: Self {
+        .product(name: "Column", package: "swift-column")
     }
     static var bufferLinearPrimitive: Self {
-        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives")
+        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear")
     }
-    static var dictionaryOrderedPrimitives: Self {
+    static var dictionaryOrdered: Self {
         .product(
-            name: "Dictionary Ordered Primitives",
-            package: "swift-dictionary-ordered-primitives"
+            name: "Dictionary Ordered",
+            package: "swift-dictionary-ordered"
         )
     }
 }
@@ -64,38 +64,38 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-layout-primitives.git",
+            url: "https://github.com/swift-molecules/swift-layout.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-foundations/swift-css-html-render.git",
+            url: "https://github.com/swift-compositions/swift-css-html-render.git",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-standards/swift-css-standard.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-html-render.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-html-render.git", branch: "main"),
         .package(url: "https://github.com/swift-whatwg/swift-whatwg-html.git", branch: "main"),
         .package(
-            url: "https://github.com/swift-primitives/swift-dictionary-ordered-primitives.git",
+            url: "https://github.com/swift-molecules/swift-dictionary-ordered.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git",
+            url: "https://github.com/swift-molecules/swift-ownership-shared.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-hash-table-primitives.git",
+            url: "https://github.com/swift-molecules/swift-hash-table.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-hash-primitives.git",
+            url: "https://github.com/swift-molecules/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-column-primitives.git",
+            url: "https://github.com/swift-molecules/swift-column.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git",
+            url: "https://github.com/swift-molecules/swift-buffer-linear.git",
             branch: "main"
         ),
     ],
@@ -108,11 +108,11 @@ let package = Package(
                 .cssStandard,
                 .htmlRendering,
                 .whatwgHTMLGrouping,
-                .dictionaryOrderedPrimitives,
+                .dictionaryOrdered,
                 .sharedPrimitive,
                 .hashIndexedPrimitive,
-                .hashPrimitives,
-                .columnPrimitives,
+                .hash,
+                .column,
                 .bufferLinearPrimitive,
             ]
         ),
