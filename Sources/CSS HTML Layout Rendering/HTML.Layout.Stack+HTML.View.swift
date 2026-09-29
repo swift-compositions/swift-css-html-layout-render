@@ -8,7 +8,7 @@ import WHATWG_HTML_Grouping
 
 public typealias LayoutRaw = Layout
 
-extension LayoutRaw<W3C_CSS_Values.Length, CSSSpace>.Stack: @retroactive Render.View
+extension LayoutRaw<W3C_CSS_Values.Length, CSSSpace>.Stack: @retroactive Renderer.Document.View
 where Content: HTML.View {}
 
 extension LayoutRaw<W3C_CSS_Values.Length, CSSSpace>.Stack: @retroactive HTML.View

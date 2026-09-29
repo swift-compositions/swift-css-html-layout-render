@@ -1,11 +1,15 @@
 public import Buffer_Linear_Primitive
 public import CSS_HTML_Rendering
 public import CSS_Standard
-public import Column
+public import Memory
+public import Memory_Allocator
+public import Storage
+public import Buffer
+
 public import Dictionary_Ordered
 import HTML_Rendering
 public import Hash_Indexed_Primitive
-import Hash
+import Hash_Table_Primitive
 public import Layout
 public import Ownership_Shared_Primitive
 import WHATWG_HTML_Grouping
@@ -55,7 +59,7 @@ extension HTML.Layout.Grid.Lazy {
     public typealias Breakpoints = __DictionaryOrdered<
         Ownership.Shared<
             Hash.Entry<CSS_Standard.Media?, Columns>,
-            Hash.Indexed<Column.Column.Heap<Hash.Entry<CSS_Standard.Media?, Columns>>>
+            Hash.Indexed<Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<Hash.Entry<CSS_Standard.Media?, Columns>>>.Linear>
         >
     >
 

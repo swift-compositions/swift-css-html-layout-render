@@ -33,12 +33,10 @@ extension Target.Dependency {
     static var hashIndexedPrimitive: Self {
         .product(name: "Hash Indexed Primitive", package: "swift-hash-table")
     }
-    static var hash: Self {
-        .product(name: "Hash", package: "swift-hash")
+    static var hashTablePrimitive: Self {
+        .product(name: "Hash Table Primitive", package: "swift-hash-table")
     }
-    static var column: Self {
-        .product(name: "Column", package: "swift-column")
-    }
+
     static var bufferLinearPrimitive: Self {
         .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear")
     }
@@ -87,17 +85,15 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-hash.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-column.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-molecules/swift-buffer-linear.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-atoms/swift-buffer.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-buffer-ring.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-memory.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-memory-allocation.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-storage.git", branch: "main", traits: ["Generational", "Memory"]),
+        .package(url: "https://github.com/swift-atoms/swift-store.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -111,9 +107,19 @@ let package = Package(
                 .dictionaryOrdered,
                 .sharedPrimitive,
                 .hashIndexedPrimitive,
-                .hash,
-                .column,
+                .hashTablePrimitive,
                 .bufferLinearPrimitive,
+                .product(name: "Buffer", package: "swift-buffer"),
+                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer Linear Bounded Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
+                .product(name: "Memory Allocator Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Pool", package: "swift-memory-allocation"),
+                .product(name: "Memory Allocator", package: "swift-memory-allocation"),
+                .product(name: "Memory", package: "swift-memory"),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
+                .product(name: "Storage", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
             ]
         ),
         .testTarget(
