@@ -9,7 +9,7 @@ public import Buffer
 public import Dictionary_Ordered
 import HTML_Rendering
 public import Hash_Indexed_Primitive
-import Hash_Table_Primitive
+public import Hash_Table_Primitive
 public import Layout
 public import Ownership_Shared_Primitive
 import WHATWG_HTML_Grouping
