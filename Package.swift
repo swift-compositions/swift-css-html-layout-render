@@ -2,13 +2,8 @@
 
 import PackageDescription
 
-extension String {
-    static let cssHTMLLayoutRendering: Self = "CSS HTML Layout Rendering"
-    var tests: Self { self + " Tests" }
-}
-
 extension Target.Dependency {
-    static var cssHTMLLayoutRendering: Self { .target(name: .cssHTMLLayoutRendering) }
+    static var cssHTMLLayoutRendering: Self { .target(name: "CSS HTML Layout Rendering") }
 }
 
 extension Target.Dependency {
@@ -58,7 +53,7 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        .library(name: .cssHTMLLayoutRendering, targets: [.cssHTMLLayoutRendering])
+        .library(name: "CSS HTML Layout Rendering", targets: ["CSS HTML Layout Rendering"])
     ],
     dependencies: [
         .package(
@@ -124,7 +119,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: .cssHTMLLayoutRendering,
+            name: "CSS HTML Layout Rendering",
             dependencies: [
                 .layout,
                 .cssHTMLRendering,
@@ -150,7 +145,7 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: .cssHTMLLayoutRendering.tests,
+            name: "CSS HTML Layout Rendering Tests",
             dependencies: [
                 .cssHTMLLayoutRendering
             ],
