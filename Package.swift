@@ -2,47 +2,6 @@
 
 import PackageDescription
 
-extension Target.Dependency {
-    static var cssHTMLLayoutRendering: Self { .target(name: "CSS HTML Layout Rendering") }
-}
-
-extension Target.Dependency {
-    static var layout: Self {
-        .product(name: "Layout", package: "swift-layout")
-    }
-    static var cssHTMLRendering: Self {
-        .product(name: "CSS HTML Rendering", package: "swift-css-html-render")
-    }
-    static var cssStandard: Self {
-        .product(name: "CSS Standard", package: "swift-css-standard")
-    }
-    static var htmlRendering: Self {
-        .product(name: "HTML Rendering", package: "swift-html-render")
-    }
-    static var whatwgHTMLGrouping: Self {
-        .product(name: "WHATWG HTML Grouping", package: "swift-whatwg-html")
-    }
-    static var sharedPrimitive: Self {
-        .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared")
-    }
-    static var hashIndexedPrimitive: Self {
-        .product(name: "Hash Indexed Primitive", package: "swift-hash-table")
-    }
-    static var hashTablePrimitive: Self {
-        .product(name: "Hash Table Primitive", package: "swift-hash-table")
-    }
-
-    static var bufferLinearPrimitive: Self {
-        .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear")
-    }
-    static var dictionaryOrdered: Self {
-        .product(
-            name: "Dictionary Ordered",
-            package: "swift-dictionary-ordered"
-        )
-    }
-}
-
 let package = Package(
     name: "swift-css-html-layout-render",
     platforms: [
@@ -121,25 +80,26 @@ let package = Package(
         .target(
             name: "CSS HTML Layout Rendering",
             dependencies: [
-                .layout,
-                .cssHTMLRendering,
-                .cssStandard,
-                .htmlRendering,
-                .whatwgHTMLGrouping,
-                .dictionaryOrdered,
-                .sharedPrimitive,
-                .hashIndexedPrimitive,
-                .hashTablePrimitive,
-                .bufferLinearPrimitive,
-                .product(name: "Buffer", package: "swift-buffer"),
+                .product(name: "Layout", package: "swift-layout"),
+                .product(name: "CSS HTML Rendering", package: "swift-css-html-render"),
+                .product(name: "CSS Standard", package: "swift-css-standard"),
+                .product(name: "HTML Rendering", package: "swift-html-render"),
+                .product(name: "WHATWG HTML Grouping", package: "swift-whatwg-html"),
+                .product(
+                    name: "Dictionary Ordered",
+                    package: "swift-dictionary-ordered"
+                ),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
+                .product(name: "Hash Indexed Primitive", package: "swift-hash-table"),
+                .product(name: "Hash Table Primitive", package: "swift-hash-table"),
                 .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear"),
+                .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Linear Bounded Primitive", package: "swift-buffer-linear"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
                 .product(name: "Memory Allocator Pool", package: "swift-memory-allocation"),
                 .product(name: "Memory Pool", package: "swift-memory-allocation"),
                 .product(name: "Memory Allocator", package: "swift-memory-allocation"),
                 .product(name: "Memory", package: "swift-memory"),
-                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared"),
                 .product(name: "Storage", package: "swift-storage"),
                 .product(name: "Store", package: "swift-store"),
             ]
@@ -147,7 +107,7 @@ let package = Package(
         .testTarget(
             name: "CSS HTML Layout Rendering Tests",
             dependencies: [
-                .cssHTMLLayoutRendering
+                .target(name: "CSS HTML Layout Rendering"),
             ],
             path: "Tests/CSS HTML Layout Rendering Tests"
         ),
