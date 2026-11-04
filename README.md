@@ -1,70 +1,13 @@
 # swift-css-html-layout-render
 
-![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
+Use this package when you build HTML views and want to lay them out in rows, columns and grids instead of writing flexbox and grid CSS by hand. Start from `HTML.Layout.VStack`, `HTML.Layout.HStack`, `HTML.Layout.Spacer` and `HTML.Layout.Grid.Lazy`. A `Layout<W3C_CSS_Values.Length, CSSSpace>.Stack` from swift-layout also renders as an `HTML.View` once you import this package. If you only need to set CSS properties on views, use swift-css-html-render.
 
-SwiftUI-style layout views for HTML — `HStack`, `VStack`, `Spacer`, and a lazy grid — built by adapting the `Layout` algebra to CSS coordinate space.
+## Laws
 
----
-
-## Key Features
-
-- **Layout as a shed facet** — layout composition is orthogonal to CSS-property rendering. This package carries the SwiftUI-style layout views so the base `CSS HTML Rendering` stays a single-concern property renderer.
-- **Adapts the L2 algebra** — the layout containers specialize `Layout<W3C_CSS_Values.Length, CSSSpace>` from `Layout`; the conformed `Layout.Stack` renders directly as an `HTML.View`.
-- **Nested namespace** — the containers live under `HTML.Layout.*` (`HTML.Layout.VStack`, `HTML.Layout.HStack`, `HTML.Layout.Spacer`, `HTML.Layout.Grid.Lazy`).
-- **Source-compatible spellings** — top-level `VStack`, `HStack`, `Spacer`, and `LazyVGrid` remain available for existing call sites.
-
----
-
-## Quick Start
-
-```swift
-import CSS_HTML_Layout_Rendering
-
-let row = HStack {
-    Spacer()
-}
-
-let column = VStack(spacing: .rem(1)) {
-    div { "First" }
-    div { "Second" }
-}
-```
-
----
-
-## Installation
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/swift-compositions/swift-css-html-layout-render.git", branch: "main")
-]
-```
-
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: [
-        .product(name: "CSS HTML Layout Rendering", package: "swift-css-html-layout-render"),
-    ]
-)
-```
-
-Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26.
-
----
-
-## Architecture
-
-The package depends on `Layout` (L2, the shared layout algebra) and `CSS HTML Rendering` (L4, the CSS-property renderer it composes). Consumers reach these views transparently via `import HTML` — the `CSS` module re-exports this module alongside `CSS HTML Rendering`.
-
----
-
-## Community
-
-<!-- BEGIN: discussion -->
-*Discussion thread will be created at first public release.*
-<!-- END: discussion -->
-
-## License
-
-Apache 2.0. See [LICENSE](LICENSE.md).
+- Every container renders as a single div with inline CSS. Nothing else is added to the document.
+- `HTML.Layout.HStack` is a row flex container and `HTML.Layout.VStack` a column flex container. With no spacing given, the gap between children is 1rem. A spacing of zero gives a zero gap.
+- `HTML.Layout.HStack` stretches its children and aligns them to the middle by default, and never grows taller than its parent. `HTML.Layout.VStack` stretches its children by default and never grows wider than its parent.
+- `HTML.Layout.Spacer` takes all free space along its stack's axis. Outside a flex container it has no effect.
+- `HTML.Layout.Grid.Lazy` always fills the full width. Each column is `minmax(0, ...)` wide, so long content can't widen a column. Auto-fill and auto-fit columns are at least their minimum width and share the rest equally.
+- `HTML.Layout.Grid.Lazy` renders only the first column setting in its breakpoints. Its media query is ignored, and later breakpoints are not rendered. With no breakpoints the grid has one column.
+- A `Layout<W3C_CSS_Values.Length, CSSSpace>.Stack` renders as a row along its primary axis and as a column otherwise, with its spacing as the gap. Leading and trailing alignment map to flex-start and flex-end, and fill maps to stretch.
