@@ -107,7 +107,7 @@ let package = Package(
         .testTarget(
             name: "CSS HTML Layout Rendering Tests",
             dependencies: [
-                .target(name: "CSS HTML Layout Rendering"),
+                .target(name: "CSS HTML Layout Rendering")
             ],
             path: "Tests/CSS HTML Layout Rendering Tests"
         ),
