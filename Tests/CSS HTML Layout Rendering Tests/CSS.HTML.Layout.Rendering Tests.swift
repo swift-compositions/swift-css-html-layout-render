@@ -2,14 +2,18 @@ import CSS_HTML_Layout_Rendering
 import HTML_Rendering
 import Testing
 
-@Suite
-struct `CSS HTML Layout Rendering Tests` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+enum `CSS.HTML.Layout.Rendering Tests` {}
+
+extension `CSS.HTML.Layout.Rendering Tests` {
+    @Suite
+    struct `CSS HTML Layout Rendering Tests` {
+        @Suite struct Unit {}
+        @Suite struct `Edge Case` {}
+        @Suite struct Integration {}
+    }
 }
 
-extension `CSS HTML Layout Rendering Tests`.Integration {
+extension `CSS.HTML.Layout.Rendering Tests`.`CSS HTML Layout Rendering Tests`.Integration {
     @Test
     func `Spacer, HStack, and VStack construct and render`() {
         let spacer = HTML.Layout.Spacer()
