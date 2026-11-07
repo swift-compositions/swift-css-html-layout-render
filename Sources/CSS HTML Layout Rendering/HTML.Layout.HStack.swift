@@ -6,12 +6,12 @@ import WHATWG_HTML_Grouping
 extension HTML.Layout {
     public struct HStack<Content: HTML.View>: HTML.View {
         public let alignment: VerticalAlign
-        public let spacing: CSS_Standard.Length?
+        public let spacing: CSS_Standard::Length?
         public let content: Content
 
         public init(
             alignment: VerticalAlign = .middle,
-            spacing: CSS_Standard.Length? = nil,
+            spacing: CSS_Standard::Length? = nil,
             @HTML.Builder content: () -> Content
         ) {
             self.alignment = alignment
