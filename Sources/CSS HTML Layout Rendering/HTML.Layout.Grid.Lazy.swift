@@ -39,7 +39,7 @@ extension HTML.Layout.Grid {
             @HTML.Builder content: () -> Content
         ) {
             var dict = Breakpoints()
-            dict.set(nil as CSS_Standard.Media?, columns)
+            dict.set(nil as CSS_Standard::Media?, columns)
             self.columns = dict
             self.horizontalSpacing = horizontalSpacing
             self.verticalSpacing = verticalSpacing
@@ -57,8 +57,8 @@ extension HTML.Layout.Grid.Lazy {
 
     public typealias Breakpoints = __DictionaryOrdered<
         Ownership.Shared<
-            Hash.Entry<CSS_Standard.Media?, Columns>,
-            Hash.Indexed<Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<Hash.Entry<CSS_Standard.Media?, Columns>>>.Linear>
+            Hash.Entry<CSS_Standard::Media?, Columns>,
+            Hash.Indexed<Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<Hash.Entry<CSS_Standard::Media?, Columns>>>.Linear>
         >
     >
 
