@@ -62,24 +62,44 @@ extension HTML.Layout.Grid.Lazy {
         >
     >
 
+    /// One `grid-template-columns` rule per breakpoint: the entry without a
+    /// media query applies unconditionally (one column when there is none),
+    /// and each other entry applies inside its media query.
     public var body: some HTML.View {
-        let colValue: Columns =
-            if !columns.isEmpty {
-                columns.value(at: .zero)
+        var baseColumns: Columns = .count(1)
+        var responsiveColumns: [(media: CSS_Standard::Media, columns: Columns)] = []
+        columns.forEach { media, value in
+            if let media = copy media {
+                responsiveColumns.append((media, copy value))
             } else {
-                .count(1)
+                baseColumns = copy value
             }
+        }
         let columnGap = horizontalSpacing == .zero ? .zero : horizontalSpacing
         let rowGap = verticalSpacing == .zero ? .zero : verticalSpacing
-        let gridCols = colValue.cssGridTemplateColumns
 
-        return HTML.ContentDivision.Element { content }
-            .css
-            .width(.percent(100))
-            .display(.grid)
-            .inlineStyle("grid-template-columns", gridCols)
-            .columnGap(columnGap)
-            .rowGap(rowGap)
+        var grid = HTML.AnyView(
+            HTML.ContentDivision.Element { content }
+                .css
+                .width(.percent(100))
+                .display(.grid)
+                .inlineStyle("grid-template-columns", baseColumns.cssGridTemplateColumns)
+                .columnGap(columnGap)
+                .rowGap(rowGap)
+        )
+        let context = HTML.Style.Rule.Context.current
+        for responsive in responsiveColumns {
+            grid = HTML.AnyView(
+                HTML.Styled(
+                    grid,
+                    StringProperty("grid-template-columns", responsive.columns.cssGridTemplateColumns),
+                    atRule: HTML.AtRule.Media(responsive.media),
+                    selector: context.selector,
+                    pseudo: context.pseudo
+                )
+            )
+        }
+        return grid
     }
 }
 
