@@ -107,7 +107,12 @@ let package = Package(
         .testTarget(
             name: "CSS HTML Layout Rendering Tests",
             dependencies: [
-                .target(name: "CSS HTML Layout Rendering")
+                .target(name: "CSS HTML Layout Rendering"),
+                .product(name: "CSS Standard", package: "swift-css-standard"),
+                .product(name: "Dictionary Ordered", package: "swift-dictionary-ordered"),
+                .product(name: "Dictionary Ordered Primitive", package: "swift-dictionary-ordered"),
+                .product(name: "HTML Rendering", package: "swift-html-render"),
+                .product(name: "Layout", package: "swift-layout"),
             ],
             path: "Tests/CSS HTML Layout Rendering Tests"
         ),
